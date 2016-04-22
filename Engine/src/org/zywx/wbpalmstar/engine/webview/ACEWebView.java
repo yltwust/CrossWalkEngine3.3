@@ -27,7 +27,6 @@ import org.xwalk.core.XWalkNavigationHistory;
 import org.xwalk.core.XWalkPreferences;
 import org.xwalk.core.XWalkView;
 import org.zywx.wbpalmstar.acedes.EXWebViewClient;
-import org.zywx.wbpalmstar.base.BDebug;
 import org.zywx.wbpalmstar.engine.EBrowserBaseSetting;
 import org.zywx.wbpalmstar.engine.ESystemInfo;
 
@@ -58,7 +57,6 @@ public class ACEWebView extends XWalkView {
 
 	static{
 		XWalkPreferences.setValue(XWalkPreferences.ALLOW_UNIVERSAL_ACCESS_FROM_FILE, true);
-		XWalkPreferences.setValue(XWalkPreferences.REMOTE_DEBUGGING, BDebug.DEBUG);
 		XWalkPreferences.setValue(XWalkPreferences.SUPPORT_MULTIPLE_WINDOWS, true);
 		XWalkPreferences.setValue(XWalkPreferences.JAVASCRIPT_CAN_OPEN_WINDOW, true);
 		XWalkPreferences.setValue(XWalkPreferences.ANIMATABLE_XWALK_VIEW,true);//设置TextureView为默认的渲染方式,
@@ -186,6 +184,14 @@ public class ACEWebView extends XWalkView {
 	public void setDownloadListener() {
 		
 	}
+
+    public int getScrollYWrap(){
+        return computeVerticalScrollOffset();
+    }
+
+    public int getScrollXWrap(){
+        return computeHorizontalScrollOffset();
+    }
 
 	public void destroy() {
 		super.onDestroy();

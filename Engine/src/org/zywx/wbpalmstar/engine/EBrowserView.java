@@ -36,6 +36,7 @@ import android.webkit.WebView;
 import android.widget.FrameLayout;
 
 import org.json.JSONObject;
+import org.xwalk.core.XWalkPreferences;
 import org.zywx.wbpalmstar.acedes.ACEDes;
 import org.zywx.wbpalmstar.acedes.EXWebViewClient;
 import org.zywx.wbpalmstar.base.BDebug;
@@ -109,6 +110,11 @@ public class EBrowserView extends ACEWebView implements View.OnLongClickListener
         setACEHardwareAccelerate();
     }
 
+    private void setRemoteDebug(){
+        int debug=mBroWind.getWidget().m_appdebug;
+        XWalkPreferences.setValue(XWalkPreferences.REMOTE_DEBUGGING, debug==1||BDebug.DEBUG);
+    }
+
     public EUExManager getEUExManager() {
         return mUExMgr;
     }
@@ -124,6 +130,7 @@ public class EBrowserView extends ACEWebView implements View.OnLongClickListener
         setLayoutAnimation(null);
         setAnimation(null);
         setNetworkAvailable(true);
+        setRemoteDebug();
         mUExMgr = new EUExManager(mContext);
         mUExMgr.addJavascriptInterface(this);
     }
@@ -239,7 +246,7 @@ public class EBrowserView extends ACEWebView implements View.OnLongClickListener
         if (mDestroyed) {
             return;
         }
-       super.setDefaultFontSize(size);
+        super.setDefaultFontSize(size);
     }
 
     public void setSupportZoom() {
