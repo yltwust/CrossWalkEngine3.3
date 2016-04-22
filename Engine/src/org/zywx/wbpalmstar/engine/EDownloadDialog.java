@@ -18,20 +18,6 @@
 
 package org.zywx.wbpalmstar.engine;
 
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.InputStream;
-import java.io.OutputStream;
-import java.net.HttpURLConnection;
-import java.net.URL;
-import java.util.Locale;
-import java.util.zip.DeflaterInputStream;
-import java.util.zip.GZIPInputStream;
-
-import org.apache.http.cookie.SM;
-import org.apache.http.protocol.HTTP;
-import org.zywx.wbpalmstar.engine.universalex.EUExUtil;
-
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -45,6 +31,21 @@ import android.webkit.CookieManager;
 import android.webkit.MimeTypeMap;
 import android.webkit.URLUtil;
 import android.widget.Toast;
+
+import org.apache.http.cookie.SM;
+import org.apache.http.protocol.HTTP;
+import org.zywx.wbpalmstar.engine.universalex.EUExUtil;
+import org.zywx.wbpalmstar.engine.webview.ACEWebConst;
+
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.net.HttpURLConnection;
+import java.net.URL;
+import java.util.Locale;
+import java.util.zip.DeflaterInputStream;
+import java.util.zip.GZIPInputStream;
 
 public class EDownloadDialog extends ProgressDialog implements Runnable {
 
@@ -158,7 +159,7 @@ public class EDownloadDialog extends ProgressDialog implements Runnable {
             mConnection.setUseCaches(false);
             mConnection.setRequestProperty("Connection", "Keep-Alive");
             mConnection.setRequestProperty("Charset", HTTP.UTF_8);
-            mConnection.setRequestProperty("User-Agent", EBrowserSetting.USERAGENT_NEW);
+            mConnection.setRequestProperty("User-Agent", ACEWebConst.USERAGENT_NEW);
             mConnection.setReadTimeout(1000 * 30);
             mConnection.setConnectTimeout(1000 * 30);
             mConnection.setInstanceFollowRedirects(false);

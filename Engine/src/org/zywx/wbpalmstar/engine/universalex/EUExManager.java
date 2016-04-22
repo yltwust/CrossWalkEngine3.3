@@ -20,7 +20,6 @@ package org.zywx.wbpalmstar.engine.universalex;
 
 import android.content.Context;
 import android.os.Build;
-import android.webkit.WebView;
 
 import org.zywx.wbpalmstar.base.BDebug;
 import org.zywx.wbpalmstar.engine.EBrowserView;
@@ -153,7 +152,7 @@ public class EUExManager {
         }
     }
 
-    public void notifyDestroy(WebView view) {
+    public void notifyDestroy(EBrowserView view) {
         notifyDocChange();
         for (EUExBase uex : mThirdPlugins) {
             if (Build.VERSION.SDK_INT >= 11) {
