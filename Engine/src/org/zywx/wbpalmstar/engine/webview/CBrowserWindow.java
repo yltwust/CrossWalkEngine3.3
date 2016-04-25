@@ -10,11 +10,10 @@ import android.net.http.SslError;
 import android.os.Build;
 import android.os.Environment;
 import android.webkit.ValueCallback;
-import android.webkit.WebResourceResponse;
 import android.widget.Toast;
 
-import org.xwalk.core.XWalkResourceClient;
 import org.xwalk.core.XWalkView;
+import org.zywx.wbpalmstar.acedes.ACEDESBrowserWindow7;
 import org.zywx.wbpalmstar.base.BDebug;
 import org.zywx.wbpalmstar.engine.EBrowserHistory;
 import org.zywx.wbpalmstar.engine.EBrowserView;
@@ -30,7 +29,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
-public class CBrowserWindow extends XWalkResourceClient {
+public class CBrowserWindow extends ACEDESBrowserWindow7 {
 
 	protected String mParms;
 	
@@ -263,12 +262,5 @@ public class CBrowserWindow extends XWalkResourceClient {
 			e.printStackTrace();
 		}
 	}
-	
-	@Override
-	public WebResourceResponse shouldInterceptLoadRequest(XWalkView view,
-			String url) {
-		// TODO Auto-generated method stub
-		return super.shouldInterceptLoadRequest(view, url);
-	}
-	
+
 }
