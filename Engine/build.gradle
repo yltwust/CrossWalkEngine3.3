@@ -1,5 +1,15 @@
-import proguard.gradle.ProGuardTask
+buildscript {
+    repositories {
+        jcenter()
+    }
+    dependencies {
+        classpath 'com.android.tools.build:gradle:2.0.0'
 
+        // NOTE: Do not place your application dependencies here; they belong
+        // in the individual module build.gradle files
+    }
+}
+import proguard.gradle.ProGuardTask
 apply plugin: 'com.android.application'
 
 repositories {
@@ -9,7 +19,7 @@ repositories {
 }
 
 dependencies {
-    compile fileTree(dir: 'libs', include: '*.jar',exclude:'android-support-v4.jar')
+    compile fileTree(dir: 'libs', exclude: 'android-support-v4.jar', include: '*.jar')
     compile 'com.android.support:support-v4:23.1.0'
     compile(name: 'crosswalk-19.49.514.0', ext: 'aar')
 }
@@ -59,6 +69,7 @@ android {
     buildTypes {
         debug {
             minifyEnabled false
+            proguardFile 'proguard.pro'
         }
         release {
             minifyEnabled false
@@ -71,9 +82,10 @@ android {
     }
 }
 
+//排除buildConfig,这里的路径应该设置与包名一致
+def buildConfigPath = "org/zywx/wbpalmstar/widgetone/uex/"
 
-def buildConfigPath = "org/zywx/wbpalmstar/widgetone/"
-def jarBaseName="AppCanEngine"
+def jarBaseName="AppCanEngine_un_proguard"
 
 task clearJar(type: Delete) {
     delete 'build/outputs/jar/'+jarBaseName
@@ -99,9 +111,10 @@ makeJar.dependsOn(clearJar)
 def androidSDKDir = plugins.getPlugin('com.android.application').sdkHandler.getSdkFolder()
 def androidJarDir = androidSDKDir.toString() + '/platforms/' + "${android.compileSdkVersion}" + '/android.jar'
 
-task proguardMyLib(type: ProGuardTask, dependsOn: ['makeJar']) {
-    injars('build/libs/AppCanEngine_un_pro.jar')
-    outjars('build/libs/AppCanEngine.jar')
+task proguardEngineLib(type: ProGuardTask, dependsOn: ['makeJar']) {
+    injars('build/outputs/jar/AppCanEngine_un_proguard.jar')
+    outjars('build/outputs/jar/AppCanEngine.jar')
     libraryjars(androidJarDir)
+    libraryjars('libs/crosswalk-19.49.514.0.aar')
     configuration 'proguard.pro'
 }
