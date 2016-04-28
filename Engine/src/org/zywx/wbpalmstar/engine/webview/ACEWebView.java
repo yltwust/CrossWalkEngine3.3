@@ -123,7 +123,7 @@ public class ACEWebView extends XWalkView {
 	}
 
 	public void loadUrl(String url, Map<String, String> extraHeaders) {
-		loadUrl(url);
+		super.load(url,null,extraHeaders);
 	}
 
 	@Override
