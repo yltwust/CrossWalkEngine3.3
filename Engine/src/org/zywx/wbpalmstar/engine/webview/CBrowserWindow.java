@@ -137,7 +137,7 @@ public class CBrowserWindow extends ACEDESBrowserWindow7 {
 			}
 			return true;
 		}
-		boolean isUrl = url.startsWith("file") || url.startsWith("http");
+		boolean isUrl = url.startsWith("file") || url.startsWith("http")|| url.startsWith("content://");
 		if (!isUrl) {
 			return true;
 		}
